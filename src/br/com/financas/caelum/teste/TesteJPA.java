@@ -17,8 +17,12 @@ public class TesteJPA {
         EntityManager manager = new JPAUtil().getEntityManager();
 
         manager.getTransaction().begin();
+
+        //persist que descarrega no banco
         manager.persist(conta);
         manager.getTransaction().commit();
+        Conta conta1 = manager.find(Conta.class, 1L);
+        System.out.print("Titular: " + conta1.getTitular());
         manager.close();
     }
 }
